@@ -12,9 +12,9 @@ each line in the matrix, each containing three numbers.
 
 A GraphicsConfiguration.xml that looks like this:
 ```xml
-<MatrixRed>		1, 0, 0 </MatrixRed>
-<MatrixGreen>	0, 1, 0 </MatrixGreen>
-<MatrixBlue>	0, 0, 1 </MatrixBlue>
+<MatrixRed>   1, 0, 0 </MatrixRed>
+<MatrixGreen> 0, 1, 0 </MatrixGreen>
+<MatrixBlue>  0, 0, 1 </MatrixBlue>
 ```
 
 Would need to be translated into this and passed to EliteMatrix:
