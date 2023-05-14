@@ -25,6 +25,9 @@ export class EliteMatrix {
 
             rgb = [red, green, blue];
 
+            // Round to 2 decimal places.
+            rgb = (rgb.map((n) => this.#round(n)) as rgbColor);
+
         } else {
             rgb = color;
         }
@@ -41,9 +44,11 @@ export class EliteMatrix {
             i++;
         }
 
-        newColor.forEach((n) => {
-            Math.max(Math.min(n, 1), 0);
-        })
+        // Make sure we don't have anything above 1 or below 0.
+        newColor = newColor.map((n) => Math.max(Math.min(n, 1), 0));
+
+        // Round again.
+        newColor = newColor.map((n) => this.#round(n))
 
         // Return the same data type as user put in.
         if (Array.isArray(color)) {
@@ -53,10 +58,17 @@ export class EliteMatrix {
             let hex: string = '#';
             newColor.forEach((n) => {
                 n *= 255;
+                n = Math.round(n);
                 hex += n.toString(16);
             });
 
             return hex;
         }
+    }
+
+    /* ------------------------------------------------------------------------------ #round ---- */
+
+    #round(n: number): number {
+        return Math.round((n + Number.EPSILON) * 100) / 100;
     }
 }
