@@ -1,6 +1,7 @@
 type matrix = [number, number, number];
 type rgbColor = [number, number, number];
 export declare class EliteMatrix {
+    #private;
     red: matrix;
     green: matrix;
     blue: matrix;
