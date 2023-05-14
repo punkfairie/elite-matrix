@@ -26,10 +26,11 @@ export class EliteMatrix {
             rgb = [red, green, blue];
 
             // Round to 2 decimal places.
-            rgb = (rgb.map((n) => this.#round(n)) as rgbColor);
+            rgb = (rgb.map(n => this.#round(n)) as rgbColor);
 
         } else {
-            rgb = color;
+            // Convert RGB decimal to RGB percent.
+            rgb = (color.map(n => this.#round(n / 255)) as rgbColor);
         }
 
         // Apply matrix filter.
@@ -48,11 +49,11 @@ export class EliteMatrix {
         newColor = newColor.map((n) => Math.max(Math.min(n, 1), 0));
 
         // Round again.
-        newColor = newColor.map((n) => this.#round(n))
+        newColor = newColor.map((n) => this.#round(n));
 
         // Return the same data type as user put in.
         if (Array.isArray(color)) {
-            return (newColor as rgbColor);
+            return (newColor.map(n => Math.round(n * 255)) as rgbColor);
 
         } else {
             let hex: string = '#';

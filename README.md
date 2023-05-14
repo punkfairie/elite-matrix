@@ -28,6 +28,19 @@ const matrix = new EliteMatrix(matrixRed, matrixGreen, matrixBlue);
 ```
 
 From there you can use the `EliteMatrix` object to apply color filters. `filterColor` accepts either
-a string hex color, or an RGB array. It will return in a matching format.
+a string hex color (with or without the '#'), or an RGB array. It will return in a matching format,
+and will include the '#' for a hex color.
+```javascript
+matrix.filterColor('#F5A804');
+// -> '#ffbae3'
+
+matrix.filterColor('F5A804');
+// -> '#ffbae3'
+
+matrix.filterColor([96, 66, 2]);
+// -> [255, 186, 227]
+// Which, by the way, can be passed directly to CSS rgb() via template literals:
+document.getElementById('elem').style.color = `rgb(${[255, 186, 227]})`;
+```
 
 [ed-scout]: https://github.com/joncage/ed-scout/blob/master/EDScoutWebUI/HudColourAdjuster.py#L37
